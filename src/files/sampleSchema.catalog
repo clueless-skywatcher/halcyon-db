@@ -1,0 +1,2 @@
+TABLE,professors,,"id integer, name integer, subject string, yoe integer"
+TABLE,students,id,"id integer, roll_no string, class_id integer"

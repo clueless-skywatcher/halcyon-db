@@ -1,0 +1,1 @@
+TABLE,school_board,name,"id integer, roll_no string, class_id integer"
