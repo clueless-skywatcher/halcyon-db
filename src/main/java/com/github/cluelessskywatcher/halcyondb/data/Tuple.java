@@ -5,6 +5,7 @@ import java.util.StringJoiner;
 public class Tuple {
     private TupleMetadata metadata;
     private DataField[] data;
+    private TupleIdentifier tupleId;
 
     public Tuple(TupleMetadata metadata) {
         this.metadata = metadata;
@@ -19,12 +20,25 @@ public class Tuple {
         this.data = data;
     }
 
+    public Tuple(TupleMetadata metadata, DataField[] data, TupleIdentifier id) throws Exception {
+        this.metadata = metadata;
+        if (data.length != metadata.getNumFields()) {
+            throw new Exception("Data should have same number of fields as metadata");
+        }
+        this.data = data;
+        this.tupleId = id;
+    }
+
     public int getTotalSize() {
         return metadata.getTotalSize();
     }
 
     public DataField getFieldAt(int i){
         return data[i];
+    }
+
+    public void setIdentifier(TupleIdentifier id) {
+        this.tupleId = id;
     }
 
     public void setFieldAt(int i, DataField data) {

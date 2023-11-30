@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.github.cluelessskywatcher.halcyondb.exceptions.BufferIsFullException;
+import com.github.cluelessskywatcher.halcyondb.storage.page.QuickPage;
+import com.github.cluelessskywatcher.halcyondb.storage.page.PageBase;
 
 public class DatabaseBufferPool {
     public static final int PAGE_SIZE = 4096;
@@ -40,7 +42,6 @@ public class DatabaseBufferPool {
     }
 
     private void loadFromDisk(int pageId) {
-        // TODO: Change this later to actually load from disk and not use QuickPage
         PageBase page = new QuickPage(pageId);
         pages.put(pageId, page);
     }

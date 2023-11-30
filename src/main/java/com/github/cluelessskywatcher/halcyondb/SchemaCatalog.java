@@ -14,8 +14,8 @@ import org.apache.commons.csv.CSVRecord;
 
 import com.github.cluelessskywatcher.halcyondb.data.DataType;
 import com.github.cluelessskywatcher.halcyondb.data.TupleMetadata;
-import com.github.cluelessskywatcher.halcyondb.storage.DatabaseFile;
-import com.github.cluelessskywatcher.halcyondb.storage.QuickFile;
+import com.github.cluelessskywatcher.halcyondb.storage.file.DatabaseFile;
+import com.github.cluelessskywatcher.halcyondb.storage.file.QuickFile;
 
 public class SchemaCatalog {
     private Map<String, DatabaseFile> namesToFiles;
@@ -72,9 +72,16 @@ public class SchemaCatalog {
 
     public TupleMetadata getTupleMetadata(String name) {
         if (!namesToFiles.containsKey(name)) {
-            throw new NoSuchElementException(String.format("Metadata does not exist for %d", name));
+            throw new NoSuchElementException(String.format("Metadata does not exist for %s", name));
         }
         return namesToFiles.get(name).getTupleMetadata();
+    }
+
+    public TupleMetadata getTupleMetadataFromId(int id) {
+        if (!idsToNames.containsKey(id)) {
+            throw new NoSuchElementException(String.format("Metadata does not exist for %d", id));
+        }
+        return getTupleMetadata(idsToNames.get(id));
     }
 
     public void reset() {

@@ -1,4 +1,4 @@
-package com.github.cluelessskywatcher.halcyondb.storage;
+package com.github.cluelessskywatcher.halcyondb.storage.file;
 
 import com.github.cluelessskywatcher.halcyondb.data.TupleMetadata;
 
