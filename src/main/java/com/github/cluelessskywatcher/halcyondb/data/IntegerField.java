@@ -1,5 +1,8 @@
 package com.github.cluelessskywatcher.halcyondb.data;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 public class IntegerField implements DataField {
     private int value;
 
@@ -55,5 +58,10 @@ public class IntegerField implements DataField {
             return value == otherInteger.value;
         }
         return false;
+    }
+
+    @Override
+    public void serialize(DataOutputStream dos) throws IOException {
+        dos.writeInt(value);
     }
 }

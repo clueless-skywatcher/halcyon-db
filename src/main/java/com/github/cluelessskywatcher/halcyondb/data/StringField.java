@@ -1,10 +1,20 @@
 package com.github.cluelessskywatcher.halcyondb.data;
 
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 public class StringField implements DataField {
     private String value;
+    private int maxSize;
 
-    public StringField(String value) {
-        this.value = value;
+    public StringField(String value, int maxSize) {
+        this.maxSize = maxSize;
+        if (value.length() > maxSize) {
+            this.value = value.substring(0, maxSize);
+        }
+        else {
+            this.value = value;
+        }
     }
 
     @Override
@@ -55,5 +65,20 @@ public class StringField implements DataField {
             return value.equals(otherString.value);
         }
         return false;
+    }
+
+    @Override
+    public void serialize(DataOutputStream dos) throws IOException {
+        String s = value;
+        int zeroPad = maxSize - s.length();
+        if (zeroPad < 0) {
+            s = s.substring(0, maxSize);
+        }
+
+        dos.writeInt(zeroPad);
+        dos.writeBytes(s);
+        while (zeroPad-- > 0) {
+            dos.write((byte)0);
+        }
     }
 }

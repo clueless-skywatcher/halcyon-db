@@ -10,8 +10,8 @@ import org.junit.jupiter.api.function.Executable;
 import com.github.cluelessskywatcher.halcyondb.HalcyonDBInstance;
 import com.github.cluelessskywatcher.halcyondb.exceptions.BufferIsFullException;
 import com.github.cluelessskywatcher.halcyondb.storage.DatabaseBufferPool;
-import com.github.cluelessskywatcher.halcyondb.storage.PageBase;
-import com.github.cluelessskywatcher.halcyondb.storage.QuickPage;
+import com.github.cluelessskywatcher.halcyondb.storage.page.PageBase;
+import com.github.cluelessskywatcher.halcyondb.storage.page.QuickPage;
 
 public class BufferPoolTest {
     @BeforeAll
@@ -30,7 +30,7 @@ public class BufferPoolTest {
             assertEquals(page, new QuickPage(i));
             byte[] pageData = page.getData();
             for (int j = 0; j < pageData.length; j++) {
-                assertEquals(pageData[j], j + page.getId());
+                assertEquals(pageData[j], j + page.getId().getPageNo());
             }
         }
         assertThrows(BufferIsFullException.class, new Executable() {

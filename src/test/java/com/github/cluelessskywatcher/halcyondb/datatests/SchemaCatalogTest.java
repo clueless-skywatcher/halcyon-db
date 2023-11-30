@@ -7,8 +7,8 @@ import com.github.cluelessskywatcher.halcyondb.HalcyonDBInstance;
 import com.github.cluelessskywatcher.halcyondb.SchemaCatalog;
 import com.github.cluelessskywatcher.halcyondb.data.DataType;
 import com.github.cluelessskywatcher.halcyondb.data.TupleMetadata;
-import com.github.cluelessskywatcher.halcyondb.storage.DatabaseFile;
-import com.github.cluelessskywatcher.halcyondb.storage.QuickFile;
+import com.github.cluelessskywatcher.halcyondb.storage.file.DatabaseFile;
+import com.github.cluelessskywatcher.halcyondb.storage.file.QuickFile;
 import com.github.cluelessskywatcher.halcyondb.testutils.TupleMetadataUtils;
 
 public class SchemaCatalogTest {
