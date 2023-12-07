@@ -97,6 +97,13 @@ public class HeapPage implements PageBase {
         return this.metadata;
     }
 
+    public Tuple getTupleAt(int i) {
+        if (!hasValue(i)) {
+            return null;
+        }
+        return rows[i];
+    }
+
     @Override
     public byte[] getData() {
         int pageBytes = DatabaseBufferPool.PAGE_SIZE;
@@ -112,7 +119,7 @@ public class HeapPage implements PageBase {
             }
         }
 
-        // Now we start working on the data
+        // Now we start writing the data
         for (int i = 0; i < rows.length; i++) {
             if (!hasValue(i)) {
                 for (int j = 0; j < metadata.getTotalSize(); j++) {

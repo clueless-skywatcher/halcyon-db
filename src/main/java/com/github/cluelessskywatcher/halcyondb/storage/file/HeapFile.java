@@ -22,12 +22,16 @@ public class HeapFile implements DatabaseFile {
         this.file = file;
         this.metadata = metadata;
         this.id = file.getAbsolutePath().hashCode();
-        this.pageCount = (int) file.length() / DatabaseBufferPool.PAGE_SIZE;
+        this.pageCount = (int) Math.ceil((double) file.length() / DatabaseBufferPool.PAGE_SIZE);
     }
 
     @Override
     public int getId() {
         return this.id;
+    }
+
+    public File getFile() {
+        return file;
     }
 
     @Override
