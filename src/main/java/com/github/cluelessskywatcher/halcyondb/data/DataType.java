@@ -8,7 +8,6 @@ public enum DataType {
     INTEGER() {
         @Override
         public int getSize() {
-            // TODO Auto-generated method stub
             return 4;
         }
 

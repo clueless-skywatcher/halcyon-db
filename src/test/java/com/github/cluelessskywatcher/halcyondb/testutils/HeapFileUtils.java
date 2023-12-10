@@ -31,7 +31,6 @@ public class HeapFileUtils {
 
     public static HeapFile generateHeapFileFromList(Object[][] rows, String fileName) throws IOException {
         TupleMetadata metadata = TupleMetadataUtils.createSampleTupleMetadata(rows[0].length, DataType.INTEGER);
-
         return HeapFileGenerator.generateHeapFileFromList(rows, fileName, DatabaseBufferPool.PAGE_SIZE, rows[0].length, metadata);
     }
 }
